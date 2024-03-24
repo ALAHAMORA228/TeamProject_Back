@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 
 @RestController
-@RequestMapping("/api/v1/main")
+@RequestMapping("/api/v1")
 public class UserController {
-    @GetMapping("/userWishList")
+    @GetMapping("/main")
     public ArrayList<Product> getUserWishList(User user){
         return user.getWishList();
     }
