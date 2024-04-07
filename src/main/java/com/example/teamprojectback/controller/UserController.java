@@ -5,14 +5,14 @@ import com.example.teamprojectback.model.Product;
 import com.example.teamprojectback.model.User;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
     @GetMapping("/main")
-    public ArrayList<Product> getUserWishList(User user){
+    public List<Product> getUserWishList(User user){
         return user.getWishList();
     }
 

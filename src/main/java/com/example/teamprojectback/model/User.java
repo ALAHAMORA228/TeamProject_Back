@@ -2,7 +2,7 @@ package com.example.teamprojectback.model;
 
 import lombok.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
@@ -11,5 +11,5 @@ public class User {
     private String login;
     private String password;
     private String email;
-    private ArrayList<Product> wishList;
+    private List<Product> wishList;
 }
