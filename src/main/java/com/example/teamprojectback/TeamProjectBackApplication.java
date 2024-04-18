@@ -16,8 +16,11 @@ public class TeamProjectBackApplication {
     static YaParser yaMarket=new YaParser();
     static OzonParser ozon=new OzonParser();
     public static void main(String[] args) {
-        ozon.getProductNames();
+        //ozon.getProductNames();
         //yaMarket.getProductNames();
+        yaMarket.getProductPrices();
+        //yaMarket.getProductsRef();
+        //yaMarket.getProductsImg();
         //SpringApplication.run(TeamProjectBackApplication.class, args);
     }
 
