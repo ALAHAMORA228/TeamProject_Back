@@ -21,7 +21,7 @@ public class TeamProjectBackApplication {
         yaMarket.getProductPrices();
         //yaMarket.getProductsRef();
         //yaMarket.getProductsImg();
-        //SpringApplication.run(TeamProjectBackApplication.class, args);
+        SpringApplication.run(TeamProjectBackApplication.class, args);
     }
 
 }

@@ -1,100 +1,52 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/styles.css">
-  <title>Главная страница</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://i.ibb.co/GP3dyzw/IMG-6199.jpg">
+    <title>Главная_Стрница</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <script src="./js/index.js" type="module" defer></script>
 </head>
 <body>
-  <header class="fixed-header">
-    <div class="logo">Логотип</div>
-    <div class="search-bar">
-      <input type="text" id="search-input" placeholder="Найти товары...">
-      <button id="search-button">Поиск</button>
+
+    <header class="fixed-header">
+        <a href="images/image.webp">
+            <div class="logo">
+                <img src="images/image.webp" alt="Логотип">
+            </div>
+        </a>
+        
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Найти на MarketMeld">
+        </div>
+            
+        <a href="/basket.html" class="basket">
+            <div class="basket__inner">
+                <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24">
+                        <path fill="red" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+            </div>
+        </a>
+        <a class="home" href="index.html">
+            <svg width="45" height="45" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="white">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.98 1.984l7 6h-2.003v6H9.96V10.97H5.997v3.016H2.982v-6H.979l7-6z"></path>
+            </svg>
+        </a>
+    </header>
+    <div class="wrapper">
+        <div class="filter-buttons">
+            <button onclick="sortByPrice('asc')">Цена по возрастанию</button>
+            <button onclick="sortByPrice('desc')">Цена</button>
+            <button onclick="filterByShop()">Магазины</button>
+        </div>
+        <div class="cards"></div>
+        <button class="show-cards none">Показать еще</button>
     </div>
-    <div class="nav-buttons">
-      <button>Избранное</button>
-      <button>Личный кабинет</button>
-    </div>
-  </header>
-  <div class="content">
-    <div class="container">
-      <div class="side-panel">
-        <h3>Фильтры</h3>
-        <div class="price-filter">
-          <label for="min-price">Цена: от</label>
-          <input type="number" id="min-price" placeholder="мин">
-          <label for="max-price">до</label>
-          <input type="number" id="max-price" placeholder="макс">
-          <button id="apply-filter">Применить</button>
-        </div>
-        <select id="sort-by">
-          <option value="price-asc">Цена (по возрастанию)</option>
-          <option value="price-desc">Цена (по убыванию)</option>
-          <option value="popularity">Популярность</option>
-          <option value="rating">Рейтинг</option>
-        </select>
-      </div>
-      <main id="product-list">
-        <div class="product-card">
-          <img src="/images/1.webp" alt="Название товара 1">
-          <h3>Мужские наручные часы Casio Vintage A-158WA-1</h3>
-          <p class="marketplace">Маркетплэйс: OZON</p>
-          <p class="price">Цена: 1890р</p>
-          <p class="rating">Рейтинг: 4.8 (574 оценки)</p>
-          <span class="wishlist-button">❤</span>
-        </div>
-        <div class="product-card">
-          <img src="/images/2.webp" alt="Название товара 1">
-          <h3>Оригинальные часы Vintage A-158WA-1</h3>
-          <p class="marketplace">Маркетплэйс: WB</p>
-          <p class="price">Цена: 2107р</p>
-          <p class="rating">Рейтинг: 4.8 (2204 оценки)</p>
-          <span class="wishlist-button">❤</span>
-        </div>
-        <div class="product-card">
-          <img src="/images/3.webp" alt="Название товара 1">
-          <h3>Оригинальные часы Collection MTP-VD01D-2E</h3>
-          <p class="marketplace">Маркетплэйс: WB</p>
-          <p class="price">Цена: 4414р</p>
-          <p class="rating">Рейтинг: 4.9 (1151 оценка)</p>
-          <span class="wishlist-button">❤</span>
-        </div>
-        <div class="product-card">
-          <img src="/images/4.webp" alt="Название товара 1">
-          <h3>Электронные японские часы Casio Illuminator W-218H-1A</h3>
-          <p class="marketplace">Маркетплэйс: OZON</p>
-          <p class="price">Цена: 2516р</p>
-          <p class="rating">Рейтинг: 4.9 (222 отзывов)</p>
-          <span class="wishlist-button">❤</span>
-        </div>
-        <div class="product-card">
-          <img src="/images/5.webp" alt="Название товара 1">
-          <h3>Оригинальные часы Edifice EFV-620D-1A4</h3>
-          <p class="marketplace">Маркетплэйс: WB</p>
-          <p class="price">Цена: 12602р</p>
-          <p class="rating">Рейтинг: 4.7 (85 оценок)</p>
-          <span class="wishlist-button">❤</span>
-        </div>
-        <div class="product-card">
-          <img src="/images/6.webp" alt="Название товара 1">
-          <h3>Casio Часы наручные Кварцевые</h3>
-          <p class="marketplace">Маркетплэйс: OZON</p>
-          <p class="price">Цена: 500р</p>
-          <p class="rating">Рейтинг: 0 (0 оценок)</p>
-          <span class="wishlist-button">❤</span>
-        </div>
-        <!-- Остальные карточки товаров -->
-      </main>
-    </div>
-  </div>
-  <footer>
-    <div class="store-info">
-      <h3>Аналитики цен товаров на популярных маркетплейсах</h3>
-      <p>Техническая поддержка: ПроектМечты@gmail.com</p>
-    </div>
-  </footer>
-  <script src="/js/script.js"></script>
+
+    <footer style="font-family: Arial, Helvetica, sans-serif; text-align: center; padding: 10px 0;">
+       проектмечты@gmail.com
+    </footer>
 </body>
 </html>
