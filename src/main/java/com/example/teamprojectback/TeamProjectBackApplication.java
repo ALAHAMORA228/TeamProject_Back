@@ -18,7 +18,7 @@ public class TeamProjectBackApplication {
     public static void main(String[] args) {
         //ozon.getProductNames();
         //yaMarket.getProductNames();
-        yaMarket.getProductPrices();
+        //yaMarket.getProductPrices();
         //yaMarket.getProductsRef();
         //yaMarket.getProductsImg();
         SpringApplication.run(TeamProjectBackApplication.class, args);

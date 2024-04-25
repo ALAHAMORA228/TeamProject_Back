@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping()
 public class UserController {
     @GetMapping("/main")
     public List<Product> getUserWishList(User user){
