@@ -15,13 +15,11 @@ import java.io.IOException;
 public class TeamProjectBackApplication {
     static YaParser yaMarket=new YaParser();
     static OzonParser ozon=new OzonParser();
+    static WildBerriesParser wb=new WildBerriesParser();
     public static void main(String[] args) {
-        //ozon.getProductNames();
-        //yaMarket.getProductNames();
-        //yaMarket.getProductPrices();
-        //yaMarket.getProductsRef();
-        //yaMarket.getProductsImg();
+
         SpringApplication.run(TeamProjectBackApplication.class, args);
+
     }
 
 }

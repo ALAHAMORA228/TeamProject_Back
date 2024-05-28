@@ -6,14 +6,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 @Component
 class WildBerriesParser {
@@ -169,29 +168,29 @@ class WildBerriesParser {
         }
     }
 
-    public String saveToExcel(String fileName) {
-        String resultPath = directory + fileName + "_" + runDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ".xlsx";
-        try (FileOutputStream fileOut = new FileOutputStream(resultPath)) {
-            Workbook workbook = new XSSFWorkbook();
-            Sheet sheet = workbook.createSheet("Data");
-
-            int rowNum = 0;
-            for (Map<String, Object> card : productCards) {
-                Row row = sheet.createRow(rowNum++);
-                int cellNum = 0;
-                for (String key : card.keySet()) {
-                    Cell cell = row.createCell(cellNum++);
-                    cell.setCellValue(card.get(key).toString());
-                }
-            }
-
-            workbook.write(fileOut);
-            workbook.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return resultPath;
-    }
+//    public String saveToExcel(String fileName) {
+//        String resultPath = directory + fileName + "_" + runDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ".xlsx";
+//        try (FileOutputStream fileOut = new FileOutputStream(resultPath)) {
+//            Workbook workbook = new XSSFWorkbook();
+//            Sheet sheet = workbook.createSheet("Data");
+//
+//            int rowNum = 0;
+//            for (Map<String, Object> card : productCards) {
+//                Row row = sheet.createRow(rowNum++);
+//                int cellNum = 0;
+//                for (String key : card.keySet()) {
+//                    Cell cell = row.createCell(cellNum++);
+//                    cell.setCellValue(card.get(key).toString());
+//                }
+//            }
+//
+//            workbook.write(fileOut);
+//            workbook.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return resultPath;
+//    }
 
     public void getProductsInSearchResult(String keyword) {
         for (int page = 1; page <= 100; page++) {
@@ -202,5 +201,42 @@ class WildBerriesParser {
                 break;
             }
         }
+    }
+
+    public void runParser() {
+//        Scanner scanner = Scanner(System.in);
+//        System.out.println("Введите 1 для парсинга категории целиком, 2 — по ключевым словам: ");
+//        String mode = scanner.nextLine();
+//
+//        if (mode.equals("1")) {
+//
+//        }
+//
+//        if (mode.equals("2")) {
+//            System.out.print("Введите запрос для поиска: ");
+//            String keyword = scanner.nextLine();
+//            getAllProductsInSearchResult(keyword);
+//            getSalesData();
+//            System.out.println("Данные сохранены в: " + saveToExcel(keyword));
+//        }
+//        scanner.close();
+        Scanner scanner = new Scanner(System.in);
+
+        String localCataloguePath = downloadCurrentCatalogue();
+        System.out.println("Каталог сохранен: " + localCataloguePath);
+        List<Map<String, Object>> processedCatalogue = processCatalogue(localCataloguePath);
+        System.out.print("Введите название категории или ссылку: ");
+        String inputCategory = scanner.nextLine();
+        Map<String, Object> categoryData = extractCategoryData(processedCatalogue, inputCategory);
+
+        if (categoryData == null) {
+            System.out.println("Категория не найдена!");
+        } else {
+            System.out.println("Найдена категория: " + categoryData.get("name"));
+        }
+
+        getAllProductsInCategory(categoryData);
+        getSalesData();
+        System.out.println("ФИНИШ");
     }
 }

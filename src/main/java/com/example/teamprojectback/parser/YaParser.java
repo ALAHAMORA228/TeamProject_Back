@@ -38,15 +38,15 @@ public class YaParser {
         for(String s:forSearch){
             for(String el:neededTag){
                 System.out.println(el);
-//                if(el.contains(s)){
-//                    System.out.println(el+"₽");
+                if(el.contains(s)){
+                    System.out.println(el+"₽");
                     output.add(el);
-//                }
+                }
             }
         }
         return output;
     }
-    public List<String> getProductsRef() {
+    public List<String> getProductsRefs() {
         Elements neededRef = document.select("a");
         List<String> hrefOutput = new ArrayList<>();
         for (Element el : neededRef) {
